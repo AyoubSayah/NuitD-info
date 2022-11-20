@@ -74,7 +74,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
                 fontSize="lg"
                 fontWeight="bold"
               >
-                Contact us
+                Contact
               </Text>
             )}
           </NavLink>

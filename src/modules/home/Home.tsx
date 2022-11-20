@@ -47,7 +47,7 @@ const Home = () => {
             <Button colorScheme="red" size="lg">
               Start Now
             </Button>
-            <Button size="lg">Contact us</Button>
+            <Button size="lg">Contact Us</Button>
           </Flex>
         </Flex>
         <Box flexBasis="50%">
