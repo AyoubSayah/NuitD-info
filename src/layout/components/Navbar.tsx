@@ -1,16 +1,23 @@
 import {
   Box,
+  Button,
   Flex,
   IconButton,
+  Img,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Select,
+  Text,
 } from '@chakra-ui/react'
 import { FunctionComponent, memo } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { NavLink } from 'react-router-dom'
+
+import Logo from '../../components/logo/Logo'
+import bottomNavbarImage from '../../assets/landing/navbar.png'
 type NavbarProps = {
   toggleSideBar?: () => void
   sideBarWidth?: number
@@ -27,70 +34,96 @@ const Navbar: FunctionComponent<NavbarProps> = ({
   }
 
   return (
-    <Flex
-      alignItems="center"
-      backdropBlur="15px"
-      backdropFilter="auto"
-      borderBottom="1px solid #C7C7D280"
-      justifyContent={'space-between'}
-      position="fixed"
-      px="1rem"
-      py="2rem"
-      right="0"
-      top="0"
-      w={{ base: '100%' }}
-      zIndex="999999"
-    >
-      <Flex alignItems="center"></Flex>
-      <Flex alignItems="center" color="gray.500" gap="1rem" ml="auto">
+    <Box position="relative" px="1rem" py="1rem" zIndex="999999">
+      <Flex
+        alignItems="center"
+        justifyContent={'space-between'}
+        right="0"
+        top="0"
+        w="100%"
+      >
+        <Flex alignItems="center">
+          <Logo h="4rem" w="4rem" />
+        </Flex>
         <Flex
           alignItems="center"
           bg="white"
-          display={{ base: 'none', sm: 'flex' }}
           fontSize="1.1rem"
           fontWeight="thin"
-          gap="0.5rem"
+          gap="1rem"
+          justifyContent="center"
           p=".5rem"
+          w="100%"
           whiteSpace="nowrap"
         >
-          s
+          <NavLink to={'/'}>
+            {({ isActive }) => (
+              <Text
+                color={isActive ? 'primary.500' : 'black'}
+                fontSize="lg"
+                fontWeight="bold"
+              >
+                Home
+              </Text>
+            )}
+          </NavLink>
+          <NavLink to={'/contactus'}>
+            {({ isActive }) => (
+              <Text
+                color={isActive ? 'primary.500' : 'black'}
+                fontSize="lg"
+                fontWeight="bold"
+              >
+                Contact us
+              </Text>
+            )}
+          </NavLink>
+          <NavLink to={'/services'}>
+            {({ isActive }) => (
+              <Text
+                color={isActive ? 'primary.500' : 'black'}
+                fontSize="lg"
+                fontWeight="bold"
+              >
+                Services
+              </Text>
+            )}
+          </NavLink>
         </Flex>
-        <Select
-          bg="white"
-          value={i18n.language}
-          onChange={handleLanguageChange}
-        >
-          <option value={'en'}>English</option>
-          <option value={'fr'}>French</option>
-          <option value={'ar'}>Arabic</option>
-        </Select>
-        <Box position="relative">
-          <IconButton aria-label="notifications" bg="white" />
-          <Box
-            bg="red.500"
-            borderRadius="full"
-            h="10px"
-            position="absolute"
-            right="4px"
-            top="9px"
-            w="10px"
-          />
-        </Box>
-        {t('profile')}
-
-        <Menu>
-          <MenuButton>
-            <IconButton aria-label="notifications" bg="white" />
-            aa
-          </MenuButton>
-          <MenuList>
-            <MenuItem color="black" fontSize="1rem" gap={'0.5rem'}>
-              {t('COMMON.PROFILE')}
-            </MenuItem>
-          </MenuList>
-        </Menu>
+        <Flex alignItems="center" gap="1rem" ml="auto">
+          <Button
+            _hover={{
+              background: 'primary.600',
+            }}
+            background="primary.500"
+            color="white"
+            rounded="full"
+            size="lg"
+            // py="1.3rem"
+            fontWeight="bold"
+          >
+            JOIN US
+          </Button>
+          {/* <Select
+            bg="white"
+            w="6.5rem"
+            value={i18n.language}
+            onChange={handleLanguageChange}
+          >
+            <option value={'en'}>English</option>
+            <option value={'fr'}>French</option>
+          </Select> */}
+        </Flex>
       </Flex>
-    </Flex>
+      <Img
+        height="5rem"
+        mt="-2rem"
+        position="relative"
+        src={bottomNavbarImage}
+        width="100%"
+        zIndex="-1"
+      />
+    </Box>
   )
 }
 

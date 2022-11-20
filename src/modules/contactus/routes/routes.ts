@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { createElement, lazy } from 'react'
 import { IRoute } from '../../../config/models/models'
 // eslint-disable-next-line @typescript-eslint/promise-function-async
 const ContactUs = lazy(() => import('../ContactUs'))
@@ -8,7 +8,7 @@ const ContactUs = lazy(() => import('../ContactUs'))
 export const CONTACTUS_ROUTES: IRoute[] = [
   {
     path: '/contactus',
-    component: ContactUs,
+    element: createElement(ContactUs),
     name: 'ContactUs',
     exact: true,
   },
