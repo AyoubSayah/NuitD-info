@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Layout from './layout/Layout'
-
+import './app.css'
 function App() {
   useEffect(() => {}, [])
   return (

@@ -9,7 +9,7 @@ const Container = () => {
   const routes = useRoutes([...CONTACTUS_ROUTES, ...HOME_ROUTES])
 
   return (
-    <Box zIndex={9} pos="relative">
+    <Box pos="relative">
       <Suspense fallback={() => <></>}>{routes}</Suspense>
     </Box>
   )

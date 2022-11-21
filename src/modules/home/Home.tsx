@@ -3,11 +3,17 @@ import {
   Button,
   chakra,
   Flex,
+  Img,
   shouldForwardProp,
   Text,
 } from '@chakra-ui/react'
 import { isValidMotionProp, motion } from 'framer-motion'
 import coverPicture from '../../assets/landing/cover.svg'
+import bottomNavbarImage from '../../assets/landing/navbar.png'
+import CarouselNews from './components/CarouselNews'
+import DevTeam from './components/DevTeam'
+import Services from './components/Services'
+
 const Home = () => {
   const ChakraImage = chakra(motion.img, {
     /**
@@ -23,6 +29,8 @@ const Home = () => {
         w="100%"
         alignItems="center"
         justifyContent="center"
+        position="relative"
+        zIndex="15"
       >
         <Flex flexDirection="column" mx="auto" mt="-5rem" gap=".5rem">
           <Text
@@ -66,6 +74,33 @@ const Home = () => {
           />
         </Box>
       </Flex>
+      <Img
+        height="5rem"
+        mt="-2rem"
+        position="absolute"
+        src={bottomNavbarImage}
+        width="100%"
+        zIndex="-6"
+      />
+      <Services />
+      <Img
+        height="5rem"
+        mt="3rem"
+        position="absolute"
+        src={bottomNavbarImage}
+        width="100%"
+        zIndex="-6"
+      />
+      <CarouselNews />
+      <Img
+        height="5rem"
+        mt="-4zzzzzzrem"
+        position="absolute"
+        src={bottomNavbarImage}
+        width="100%"
+        zIndex="-6"
+      />
+      <DevTeam />
     </>
   )
 }

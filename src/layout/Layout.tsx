@@ -1,5 +1,6 @@
 import BackgrounDiv from './components/BackgrounDiv'
 import Container from './components/Container'
+import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 
 const Layout = () => {
@@ -8,6 +9,7 @@ const Layout = () => {
       <Navbar />
       <BackgrounDiv />
       <Container />
+      <Footer />
     </div>
   )
 }
