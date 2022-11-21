@@ -14,7 +14,7 @@ const BackgrounDiv = () => {
       backgroundAttachment="fixed"
       display="flex"
       justifyContent="space-between"
-      zIndex="-1"
+      zIndex="5"
       position="fixed"
       w="100%"
       h="100%"
@@ -25,6 +25,7 @@ const BackgrounDiv = () => {
         display="flex"
         height="100px"
         justifyContent="center"
+        zIndex="5"
         padding="2"
         width="100px"
         animate={{
@@ -66,6 +67,7 @@ const BackgrounDiv = () => {
         background="primary.500"
         display="flex"
         height="100px"
+        zIndex="5"
         justifyContent="center"
         padding="2"
         rounded="full"
@@ -112,6 +114,7 @@ const BackgrounDiv = () => {
         height="30px"
         justifyContent="center"
         padding="2"
+        zIndex="5"
         rounded="full"
         width="30px"
         animate={{

@@ -4,6 +4,7 @@ import {
   Flex,
   IconButton,
   Img,
+  keyframes,
   Menu,
   MenuButton,
   MenuItem,
@@ -11,7 +12,7 @@ import {
   Select,
   Text,
 } from '@chakra-ui/react'
-import { FunctionComponent, memo } from 'react'
+import { FunctionComponent, memo, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { NavLink } from 'react-router-dom'
@@ -28,13 +29,43 @@ const Navbar: FunctionComponent<NavbarProps> = ({
   sideBarWidth,
 }) => {
   const { t, i18n } = useTranslation()
-
+  const [isSticky, setIsSticky] = useState(false)
   const handleLanguageChange = (e: any) => {
     void i18n.changeLanguage(e.target.value)
   }
-
+  const animationKeyframes = keyframes`
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+    }`
+  useEffect(() => {
+    window.onscroll = () => {
+      if (
+        document.body.scrollTop > 300 ||
+        document.documentElement.scrollTop > 300
+      ) {
+        setIsSticky(true)
+      } else {
+        setIsSticky(false)
+      }
+    }
+  }, [])
   return (
-    <Box position="relative" px="1rem" py="1rem" zIndex="999999">
+    <Box
+      position={isSticky ? 'fixed' : 'relative'}
+      top={0}
+      left={0}
+      w="100%"
+      h="6rem"
+      px="1rem"
+      animation={isSticky ? `${animationKeyframes} 0.5s ease-in-out` : ''}
+      py="1rem"
+      zIndex="999999"
+      background="white"
+      boxShadow={isSticky ? 'md' : ''}
+    >
       <Flex
         alignItems="center"
         justifyContent={'space-between'}
