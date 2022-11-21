@@ -41,7 +41,7 @@ const Home = () => {
             textAlign="left"
             maxW="30rem"
           >
-            PROXYLA
+            PROXELA
           </Text>
           <Text fontSize="2xl" fontWeight="bold" textAlign="left" maxW="30rem">
             Idk what to write here but I'm sure it will be something cool.

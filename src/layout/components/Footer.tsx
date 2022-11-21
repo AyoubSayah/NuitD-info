@@ -28,7 +28,7 @@ const Footer = () => {
         <Logo h="100%" w="100%" />
       </Box>
       <Text fontSize="2xl" fontWeight="extrabold" color="white">
-        PROXYLA
+        PROXELA
       </Text>
     </Box>
   )
