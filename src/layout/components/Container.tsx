@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import { Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
+import Loader from '../../components/Loader/Loader'
 
 import { CONTACTUS_ROUTES } from '../../modules/contactus/routes/routes'
 import { HOME_ROUTES } from '../../modules/home/routes/routes'
@@ -10,7 +11,7 @@ const Container = () => {
 
   return (
     <Box pos="relative" minH="100vh">
-      <Suspense fallback={() => <></>}>{routes}</Suspense>
+      <Suspense fallback={<Loader />}>{routes}</Suspense>
     </Box>
   )
 }

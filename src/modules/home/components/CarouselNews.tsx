@@ -10,19 +10,15 @@ import 'swiper/css/navigation'
 import { useGetNewsQuery } from '../slices/landingAsyncSlice'
 
 import CarouselItem from './CarouselItem'
-import { Box, chakra, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
 import { Navigation } from 'swiper'
 
 const CarouselNews = () => {
   const { data: feeds, isFetching } = useGetNewsQuery({})
   const navigationPrevRef = React.useRef(null)
   const navigationNextRef = React.useRef(null)
-  const ChakraSwipper = chakra(Swiper, {
-    /**
-     * Allow motion props and non-Chakra props to be forwarded.
-     */
-    shouldForwardProp: (prop) => true,
-  })
+  const listOfSkeletons = [1, 2, 3, 4]
+
   return (
     <Box as="section" zIndex={15} position="relative" my="8rem">
       <Text
@@ -51,6 +47,13 @@ const CarouselNews = () => {
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper: any) => console.log(swiper)}
           modules={[Navigation]}
+          watchSlidesProgress={true}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            680: { slidesPerView: 2 },
+            1000: { slidesPerView: 3 },
+            1200: { slidesPerView: 4 },
+          }}
           //   sx={{ '.swiper-wrapper': { padding: '0 2rem;' } }}
           navigation={{
             prevEl: navigationPrevRef.current,
@@ -63,11 +66,30 @@ const CarouselNews = () => {
               (data: any) =>
                 data?.enclosures.length > 0 && (
                   <SwiperSlide>
-                    <CarouselItem data={data} />
+                    {({ isVisible }) => (
+                      <CarouselItem
+                        key={data.title}
+                        data={data}
+                        isVisible={isVisible}
+                      />
+                    )}
                   </SwiperSlide>
                 )
             )}
-
+          {isFetching && (
+            <Flex justifyContent="space-between">
+              {listOfSkeletons.map((item) => (
+                <Skeleton
+                  startColor="primary.50"
+                  endColor="primary.100"
+                  borderRadius="lg"
+                >
+                  {' '}
+                  <CarouselItem data={item} />
+                </Skeleton>
+              ))}
+            </Flex>
+          )}
           <Box
             ref={navigationNextRef}
             color="primary.500"
