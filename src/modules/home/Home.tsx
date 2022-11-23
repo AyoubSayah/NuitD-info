@@ -65,7 +65,11 @@ const Home = () => {
             similique,
           </Text>
           <Flex gap=".5rem" mt="1rem">
-            <Button colorScheme="red" size={{ base: 'md', md: 'lg' }}>
+            <Button
+              color="white"
+              colorScheme="primary"
+              size={{ base: 'md', md: 'lg' }}
+            >
               Start Now
             </Button>
             <Button size={{ base: 'md', md: 'lg' }}>Contact Us</Button>

@@ -13,7 +13,7 @@ const Footer = () => {
       alignItems="center"
       gap="2rem"
       py="4rem"
-      zIndex={15}
+      zIndex={14}
       position="relative"
     >
       <Text

@@ -23,7 +23,7 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../../components/logo/Logo'
 import bottomNavbarImage from '../../assets/landing/navbar.png'
 import { useSelector } from 'react-redux'
-import { selectToken } from '../../modules/contactus/slices/authSlice'
+import { selectToken } from '../../modules/auth/slices/authSlice'
 type NavbarProps = {
   toggleSideBar?: () => void
   sideBarWidth?: number
@@ -69,7 +69,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
       px="1rem"
       animation={isSticky ? `${animationKeyframes} 0.5s ease-in-out` : ''}
       py="1rem"
-      zIndex="999999"
+      zIndex="80"
       background="white"
       boxShadow={isSticky ? 'md' : ''}
     >

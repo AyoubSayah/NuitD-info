@@ -15,6 +15,24 @@ export const theme = extendTheme({
         msUserSelect: 'none',
         userSelect: 'none',
       },
+      input: {
+        _focusVisible: {
+          borderColor: 'primary.500 !important',
+          boxShadow: '0 0 0 1px var(--chakra-colors-primary-500) !important',
+        },
+      },
+      textarea: {
+        _focusVisible: {
+          borderColor: 'primary.500 !important',
+          boxShadow: '0 0 0 1px var(--chakra-colors-primary-500) !important',
+        },
+      },
+      select: {
+        _focusVisible: {
+          borderColor: 'primary.500 !important',
+          boxShadow: '0 0 0 1px var(--chakra-colors-primary-500) !important',
+        },
+      },
       body: {},
 
       '&::-webkit-scrollbar': {
@@ -26,7 +44,7 @@ export const theme = extendTheme({
         height: '6px',
       },
       '&::-webkit-scrollbar-thumb': {
-        background: 'primary',
+        background: 'primary.500',
         borderRadius: '24px',
       },
     },
