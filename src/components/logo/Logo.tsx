@@ -9,7 +9,7 @@ const Path = chakra('path')
 
 const Logo: FC<LogoProps> = ({
   textColor = '#fff',
-  backgroundColor = '#f0575d',
+  backgroundColor = 'primary.500',
   ...props
 }) => {
   return (
@@ -25,7 +25,7 @@ const Logo: FC<LogoProps> = ({
             stroke={backgroundColor}
             strokeMiterlimit="10"
             strokeWidth="2px"
-            style={{ fill: 'none', stroke: '#f0575d' }}
+            sx={{ fill: 'none', stroke: 'primary.500' }}
             d="M214.57,122.65a16.79,16.79,0,0,1-8.09,21.58L75.22,206.84A15.34,15.34,0,0,1,54.43,199L5.87,86.72A16.79,16.79,0,0,1,14,65.14L145.22,2.53A15.35,15.35,0,0,1,166,10.32Z"
           />
           <Path

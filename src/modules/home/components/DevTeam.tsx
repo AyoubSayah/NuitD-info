@@ -6,16 +6,18 @@ import mahmoud from '../../../assets/team/mahmoud.jpg'
 import yassine from '../../../assets/team/yassine.jpg'
 import elbou from '../../../assets/team/elbou.jpg'
 import houssem from '../../../assets/team/houssem.jpg'
+import haroon from '../../../assets/team/haroon.jpg'
+
 import AvatarProgress from '../../../components/avatar/avatar'
 import { shuffleArray } from '../../../utils/utils'
 const DevTeam = () => {
-  const devs = [feryel, ayoub, mahmoud, yassine, elbou, houssem]
+  const devs = [feryel, ayoub, mahmoud, yassine, elbou, houssem, haroon]
   return (
     <Box as="section" zIndex={15} position="relative" mt="5rem" mb="18rem">
       <Text
         as="h2"
         fontWeight="extrabold"
-        fontSize="4xl"
+        fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
         mt="12rem"
         textAlign="center"
         textTransform="capitalize"
@@ -25,7 +27,7 @@ const DevTeam = () => {
         Our Dev Team
       </Text>
       <Text
-        fontSize="2xl"
+        fontSize={{ base: 'lg', md: '2xl' }}
         maxW={{ base: '100%', md: '45rem' }}
         mx="auto"
         textAlign="center"
