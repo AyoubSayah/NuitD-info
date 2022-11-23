@@ -15,7 +15,7 @@ const DevTeam = () => {
       <Text
         as="h2"
         fontWeight="extrabold"
-        fontSize="4xl"
+        fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
         mt="12rem"
         textAlign="center"
         textTransform="capitalize"
@@ -25,7 +25,7 @@ const DevTeam = () => {
         Our Dev Team
       </Text>
       <Text
-        fontSize="2xl"
+        fontSize={{ base: 'lg', md: '2xl' }}
         maxW={{ base: '100%', md: '45rem' }}
         mx="auto"
         textAlign="center"

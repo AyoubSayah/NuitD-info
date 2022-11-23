@@ -31,11 +31,19 @@ const Home = () => {
         justifyContent="center"
         position="relative"
         zIndex="15"
+        flexWrap={{ base: 'wrap', md: 'nowrap' }}
+        flexDirection={{ base: 'row-reverse', md: 'row' }}
       >
-        <Flex flexDirection="column" mx="auto" mt="-5rem" gap=".5rem">
+        <Flex
+          flexDirection="column"
+          mx="auto"
+          mt="-5rem"
+          gap=".5rem"
+          order={{ base: 2, md: 'unset' }}
+        >
           <Text
             as="h1"
-            fontSize="5xl"
+            fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
             fontWeight="bold"
             color="primary.700"
             textAlign="left"
@@ -43,7 +51,12 @@ const Home = () => {
           >
             PROXELA
           </Text>
-          <Text fontSize="2xl" fontWeight="bold" textAlign="left" maxW="30rem">
+          <Text
+            fontSize={{ base: 'xl', md: '2xl' }}
+            fontWeight="bold"
+            textAlign="left"
+            maxW="30rem"
+          >
             Idk what to write here but I'm sure it will be something cool.
           </Text>
           <Text maxW="30rem">
@@ -52,10 +65,10 @@ const Home = () => {
             similique,
           </Text>
           <Flex gap=".5rem" mt="1rem">
-            <Button colorScheme="red" size="lg">
+            <Button colorScheme="red" size={{ base: 'md', md: 'lg' }}>
               Start Now
             </Button>
-            <Button size="lg">Contact Us</Button>
+            <Button size={{ base: 'md', md: 'lg' }}>Contact Us</Button>
           </Flex>
         </Flex>
         <Box flexBasis="50%">

@@ -24,7 +24,7 @@ const CarouselNews = () => {
       <Text
         as="h2"
         fontWeight="extrabold"
-        fontSize="4xl"
+        fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
         mt="12rem"
         textAlign="center"
         textTransform="capitalize"
@@ -79,14 +79,17 @@ const CarouselNews = () => {
           {isFetching && (
             <Flex justifyContent="space-between">
               {listOfSkeletons.map((item) => (
-                <Skeleton
-                  startColor="primary.50"
-                  endColor="primary.100"
-                  borderRadius="lg"
-                >
-                  {' '}
-                  <CarouselItem data={item} />
-                </Skeleton>
+                <SwiperSlide>
+                  <Skeleton
+                    startColor="primary.50"
+                    endColor="primary.100"
+                    borderRadius="lg"
+                    mx="1rem"
+                  >
+                    {' '}
+                    <CarouselItem data={item} />
+                  </Skeleton>
+                </SwiperSlide>
               ))}
             </Flex>
           )}
