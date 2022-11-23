@@ -23,13 +23,13 @@ const SuccessModal: FunctionComponent = () => {
   return (
     <Modal
       isOpen={isModalShow}
-      onClose={() => dispatch(closeModalSuccess)}
+      onClose={() => dispatch(closeModalSuccess())}
       isCentered
     >
       <ModalOverlay />
       <ModalContent>
         <ModalBody maxW={'400px'}>
-          <Flex flexDir="column" justifyContent="center" p="4rem" gap="1rem">
+          <Flex flexDir="column" justifyContent="center" p="4rem" gap="1rem" alignItems="center">
             <Icon
               as={AiFillCheckCircle}
               color="teal.500"

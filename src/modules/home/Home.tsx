@@ -8,6 +8,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { isValidMotionProp, motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import coverPicture from '../../assets/landing/cover.svg'
 import bottomNavbarImage from '../../assets/landing/navbar.png'
 import CarouselNews from './components/CarouselNews'
@@ -72,7 +73,7 @@ const Home = () => {
             >
               Start Now
             </Button>
-            <Button size={{ base: 'md', md: 'lg' }}>Contact Us</Button>
+            <Link to={'/contactus'}><Button size="lg">Contact Us</Button></Link>
           </Flex>
         </Flex>
         <Box flexBasis="50%">

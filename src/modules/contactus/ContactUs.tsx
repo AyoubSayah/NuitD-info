@@ -11,28 +11,18 @@ import {
   VStack,
   Textarea,
   HStack,
-  Heading,
-  Text,
-} from '@chakra-ui/react'
+  Text
+} from "@chakra-ui/react";
+import { useDispatch } from 'react-redux';
+import { openModalSuccess } from '../../layout/sharedSlice/sharedSlice';
 const ContactUs = () => {
+
+  const dispatch = useDispatch()
+
   return (
-    <Flex align="center" justify="center" h="70vh">
-      <Box
-        boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"
-        bg="white"
-        p={6}
-        rounded="md"
-        w={480}
-      >
-        <Text
-          padding={10}
-          textTransform="capitalize"
-          fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
-          fontWeight="extrabold"
-          textAlign="center"
-        >
-          Let's keep in touch
-        </Text>
+    <Flex align="center" justify="center">
+      <Box my="4rem" boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" bg="white" p={6} rounded="md" w={480} zIndex={15} position="relative">
+      <Text padding={10} textTransform="capitalize" fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }} fontWeight="extrabold" textAlign="center" >Let's keep in touch</Text>
         <Formik
           initialValues={{
             firstName: '',
@@ -42,10 +32,11 @@ const ContactUs = () => {
           }}
           onSubmit={(values) => {
             alert(JSON.stringify(values, null, 2))
+            dispatch(openModalSuccess({ message: 'Sahhit bara zamer ya sayah' }))
           }}
         >
           {({ handleSubmit, errors, touched }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
               <VStack spacing={4} align="flex-start">
                 <HStack spacing="24px">
                   <FormControl
@@ -141,20 +132,8 @@ const ContactUs = () => {
         </Formik>
       </Box>
     </Flex>
-  )
+  );
 
-  // let somme = 1
-  // const addToSomme = () => {
-  //   somme = somme + 1
-  // }
-  // return <div className="">
-  //   <Box fontSize="xx-large">{somme}</Box>
-  //   <Button
-  //     colorScheme=""
-  //     position="relative"
-  //     zIndex={99}
-  //     onClick={addToSomme}>Add</Button>
-  // </div>
 }
 
 export default ContactUs
