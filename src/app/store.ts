@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { authSlice } from '../modules/contactus/slices/authSlice'
+import { SharedSlice } from '../layout/sharedSlice/sharedSlice'
+import { authSlice } from '../modules/auth/slices/authSlice'
 import { landingAsyncSlice } from '../modules/home/slices/landingAsyncSlice'
 import { globalApi } from './globalAsync'
 
@@ -8,6 +9,7 @@ export const store = configureStore({
     [globalApi.reducerPath]: globalApi.reducer,
     landing: landingAsyncSlice.reducer,
     authentification: authSlice.reducer,
+    shared: SharedSlice.reducer,
 
     // [productApi.reducerPath]: productApi.reducer,
   },

@@ -6,10 +6,12 @@ import mahmoud from '../../../assets/team/mahmoud.jpg'
 import yassine from '../../../assets/team/yassine.jpg'
 import elbou from '../../../assets/team/elbou.jpg'
 import houssem from '../../../assets/team/houssem.jpg'
+import haroon from '../../../assets/team/haroon.jpg'
+
 import AvatarProgress from '../../../components/avatar/avatar'
 import { shuffleArray } from '../../../utils/utils'
 const DevTeam = () => {
-  const devs = [feryel, ayoub, mahmoud, yassine, elbou, houssem]
+  const devs = [feryel, ayoub, mahmoud, yassine, elbou, houssem, haroon]
   return (
     <Box as="section" zIndex={15} position="relative" mt="5rem" mb="18rem">
       <Text

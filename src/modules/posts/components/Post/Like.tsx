@@ -1,10 +1,18 @@
-import { Box, Center, Flex, Icon, keyframes, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Center,
+  Flex,
+  Icon,
+  Image,
+  keyframes,
+  Text,
+} from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { IoMdThumbsUp, IoMdThumbsDown, IoIosHeart } from 'react-icons/io'
-import { BsEmojiLaughingFill } from 'react-icons/bs'
+import Pika from '../../../../components/pika/Pika'
 const goUp = keyframes`
 0%{
-transform:translateY(6rem);
+transform:translateY(4rem);
 opacity:0.2;
 }
 100%{
@@ -42,27 +50,166 @@ transform:scale(.8);
 
     transform:scale(1);}
  `
+
 const Like = () => {
   const [showReactions, SetShowReaction] = useState(false)
-  const animationUp = goUp + ' .5s ease-in-out '
+  const [likeType, SetLikeType] = useState('')
+
+  const animationUp = goUp + ' .3s ease-in-out '
   const animationBounce = bounce + ' 1s ease-in-out infinite  '
-  const animationScale = scale + ' 1s ease-in-out infinite  '
+  const animationBounceOnce = bounce + ' 1s ease-in-out'
+
+  const animationScale = scale + ' 1.3s ease-in-out infinite  '
+  const animationScaleOnce = scale + ' 1s ease-in-out   '
+
+  const handleLike = (type: string) => {
+    if (type === likeType) {
+      SetLikeType('')
+      SetShowReaction(false)
+      return
+    }
+    SetLikeType(type)
+    SetShowReaction(false)
+  }
+  const getBackgroundColor = () => {
+    if (likeType === 'like') {
+      return 'primary.500'
+    }
+    if (likeType === 'love') {
+      return 'red.500'
+    }
+    if (likeType === 'laugh') {
+      return 'yellow.400'
+    }
+    if (likeType === 'dislike') {
+      return 'gray.700'
+    }
+    return 'gray.100'
+  }
+  const getBackgroundHoverColor = () => {
+    if (likeType === 'like') {
+      return 'primary.600'
+    }
+    if (likeType === 'love') {
+      return 'red.600'
+    }
+    if (likeType === 'laugh') {
+      return 'yellow.500'
+    }
+    if (likeType === 'dislike') {
+      return 'gray.600'
+    }
+    return 'gray.200'
+  }
+  const getIconAndText = () => {
+    if (likeType === 'like') {
+      return (
+        <Flex
+          alignItems="center"
+          gap=".4rem"
+          onClick={handleClick}
+          w="full"
+          justifyContent="center"
+        >
+          <Icon
+            as={IoMdThumbsUp}
+            animation={animationBounceOnce}
+            w="1.5rem"
+            h="1.5rem"
+          />{' '}
+          <Text fontWeight="semibold">Like</Text>{' '}
+        </Flex>
+      )
+    }
+    if (likeType === 'love') {
+      return (
+        <Flex
+          alignItems="center"
+          gap=".4rem"
+          onClick={handleClick}
+          w="full"
+          justifyContent="center"
+        >
+          <Icon
+            as={IoIosHeart}
+            animation={animationScaleOnce}
+            w="1.5rem"
+            h="1.5rem"
+          />{' '}
+          <Text fontWeight="semibold">Love</Text>{' '}
+        </Flex>
+      )
+    }
+    if (likeType === 'laugh') {
+      return (
+        <Flex
+          alignItems="center"
+          gap=".4rem"
+          onClick={handleClick}
+          w="full"
+          justifyContent="center"
+        >
+          <Pika animation={animationScaleOnce} w="1.5rem" h="1.5rem" />
+          <Text fontWeight="semibold">Laugh</Text>{' '}
+        </Flex>
+      )
+    }
+    if (likeType === 'dislike') {
+      return (
+        <Flex
+          alignItems="center"
+          gap=".4rem"
+          onClick={handleClick}
+          w="full"
+          justifyContent="center"
+        >
+          <Icon
+            as={IoMdThumbsDown}
+            animation={animationBounceOnce}
+            w="1.5rem"
+            h="1.5rem"
+          />{' '}
+          <Text fontWeight="semibold">Dislike</Text>{' '}
+        </Flex>
+      )
+    }
+    return (
+      <Flex
+        alignItems="center"
+        gap=".4rem"
+        onClick={handleClick}
+        w="full"
+        justifyContent="center"
+      >
+        <Icon as={IoMdThumbsUp} w="1.5rem" h="1.5rem" />{' '}
+        <Text fontWeight="semibold">Like</Text>{' '}
+      </Flex>
+    )
+  }
+  const handleClick = () => {
+    if (likeType === '') {
+      SetLikeType('like')
+      SetShowReaction(false)
+      return
+    }
+    SetLikeType('')
+    SetShowReaction(false)
+  }
   return (
     <Center
       p=".5rem"
       flexBasis="50%"
-      bg="gray.100"
+      bg={getBackgroundColor()}
+      color={likeType === '' ? 'gray.500' : 'white'}
       borderLeftRadius="lg"
-      _hover={{ background: 'gray.200' }}
+      _hover={{ background: getBackgroundHoverColor() }}
       transition="all .3s"
       cursor="pointer"
       position="relative"
       onMouseEnter={() => SetShowReaction(true)}
       onMouseLeave={() => SetShowReaction(false)}
     >
-      <Text mx="auto" fontWeight="semibold">
-        Like
-      </Text>
+      {getIconAndText()}
       {showReactions && (
         <Flex
           position="absolute"
@@ -84,6 +231,7 @@ const Like = () => {
             w="2.8rem"
             h="2.8rem"
             bg="primary.500"
+            onClick={() => handleLike('like')}
           >
             <Icon
               w="2rem"
@@ -93,7 +241,13 @@ const Like = () => {
               as={IoMdThumbsUp}
             />
           </Center>
-          <Center rounded="full" w="2.8rem" h="2.8rem" bg="red.500">
+          <Center
+            rounded="full"
+            w="2.8rem"
+            h="2.8rem"
+            bg="red.500"
+            onClick={() => handleLike('love')}
+          >
             <Icon
               w="2rem"
               h="2rem"
@@ -102,16 +256,23 @@ const Like = () => {
               animation={animationScale}
             />
           </Center>
-          <Box>
-            <Icon
-              w="2.8rem"
-              h="2.8rem"
-              color="yellow.400"
-              as={BsEmojiLaughingFill}
-            />
+          <Box onClick={() => handleLike('laugh')}>
+            <Pika animation={animationScale} />
           </Box>
-          <Center rounded="full" w="2.8rem" h="2.8rem" bg="blackAlpha.500">
-            <Icon w="2rem" h="2rem" color="white" as={IoMdThumbsDown} />
+          <Center
+            rounded="full"
+            w="2.8rem"
+            h="2.8rem"
+            bg="gray.700"
+            onClick={() => handleLike('dislike')}
+          >
+            <Icon
+              w="2rem"
+              h="2rem"
+              color="white"
+              as={IoMdThumbsDown}
+              animation={animationBounce}
+            />
           </Center>
         </Flex>
       )}
