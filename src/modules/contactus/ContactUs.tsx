@@ -11,7 +11,6 @@ import {
   VStack,
   Textarea,
   HStack,
-  Heading,
   Text
 } from "@chakra-ui/react";
 const ContactUs = () => {
@@ -19,8 +18,8 @@ const ContactUs = () => {
 
 
   return (
-    <Flex align="center" justify="center" h="70vh">
-      <Box boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" bg="white" p={6} rounded="md" w={480}>
+    <Flex align="center" justify="center">
+      <Box my="4rem" boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" bg="white" p={6} rounded="md" w={480} zIndex={15} position="relative">
       <Text padding={10} textTransform="capitalize" fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }} fontWeight="extrabold" textAlign="center" >Let's keep in touch</Text>
         <Formik
           initialValues={{
@@ -121,23 +120,7 @@ const ContactUs = () => {
       </Box>
     </Flex>
   );
-    
 
-  
-
-
-  // let somme = 1
-  // const addToSomme = () => {
-  //   somme = somme + 1
-  // }
-  // return <div className="">
-  //   <Box fontSize="xx-large">{somme}</Box>
-  //   <Button
-  //     colorScheme=""
-  //     position="relative"
-  //     zIndex={99}
-  //     onClick={addToSomme}>Add</Button>
-  // </div>
 }
 
 export default ContactUs
