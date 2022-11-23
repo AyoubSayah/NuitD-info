@@ -1,13 +1,20 @@
-import { Card, Img, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Card, Img, Skeleton, Text } from '@chakra-ui/react'
+import React, { useEffect } from 'react'
+import { useLazyGetImageQuery } from '../slices/landingAsyncSlice'
 
-const CarouselItem = ({ data }: any) => {
+const CarouselItem = ({ data, isVisible }: any) => {
+  const [trigger, { isFetching, data: image }] = useLazyGetImageQuery()
+  useEffect(() => {
+    if (data?.enclosures && isVisible && !image) {
+      trigger({ url: data.enclosures[0].url })
+    }
+  }, [isVisible])
   return (
     <Card
       bg="white"
       boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"
       height="31rem"
-      mx="1rem"
+      mx={{ base: 'auto', md: '1rem' }}
       p="1rem"
       rounded="lg"
       w="19rem"
@@ -18,12 +25,22 @@ const CarouselItem = ({ data }: any) => {
         transform: 'scale(1.05)',
       }}
     >
-      <Img
-        alt={data.title}
-        objectFit="cover"
-        rounded="lg"
-        src={data?.enclosures[0]?.url}
-      />
+      <Skeleton
+        isLoaded={!isFetching && image != undefined}
+        w="100%"
+        display="flex"
+        justifyContent="center"
+      >
+        <Img
+          alt={data.title}
+          objectFit="cover"
+          rounded="lg"
+          src={image}
+          w="full"
+          minH="15rem"
+        />
+      </Skeleton>
+
       <Text fontSize="lg" fontWeight="bold" mt="1rem" noOfLines={3}>
         {data?.title}
       </Text>

@@ -18,6 +18,7 @@ const BackgrounDiv = () => {
       position="fixed"
       w="100%"
       h="100%"
+      overflow="hidden"
     >
       <ChakraBox
         alignItems="center"

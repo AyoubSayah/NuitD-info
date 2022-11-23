@@ -18,7 +18,7 @@ const Services = () => {
       <Text
         as="h2"
         fontWeight="extrabold"
-        fontSize="4xl"
+        fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
         mt="5rem"
         textAlign="center"
         textTransform="capitalize"
@@ -28,14 +28,19 @@ const Services = () => {
         We Should Provide You with the best features{' '}
       </Text>
       <Text
-        fontSize="2xl"
+        fontSize={{ base: 'lg', md: '2xl' }}
         maxW={{ base: '100%', md: '45rem' }}
         mx="auto"
         textAlign="center"
       >
         Join Us Now and get the best features that you can't find anywhere else
       </Text>
-      <SimpleGrid columns={2} mt="4rem" gap="2rem">
+      <SimpleGrid
+        columns={{ base: 1, md: 2 }}
+        px={{ base: '.5rem', md: 'none' }}
+        mt="4rem"
+        gap="2rem"
+      >
         <Card
           mx="auto"
           px="3rem"
