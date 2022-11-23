@@ -13,7 +13,12 @@ import {
   HStack,
   Text
 } from "@chakra-ui/react";
+import { useDispatch } from 'react-redux';
+import { openModalSuccess } from '../../layout/sharedSlice/sharedSlice';
 const ContactUs = () => {
+
+  const dispatch = useDispatch()
+
   return (
     <Flex align="center" justify="center">
       <Box my="4rem" boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" bg="white" p={6} rounded="md" w={480} zIndex={15} position="relative">
@@ -27,10 +32,11 @@ const ContactUs = () => {
           }}
           onSubmit={(values) => {
             alert(JSON.stringify(values, null, 2))
+            dispatch(openModalSuccess({ message: 'Sahhit bara zamer ya sayah' }))
           }}
         >
           {({ handleSubmit, errors, touched }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
               <VStack spacing={4} align="flex-start">
                 <HStack spacing="24px">
                   <FormControl
