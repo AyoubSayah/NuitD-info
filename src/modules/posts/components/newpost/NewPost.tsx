@@ -15,6 +15,7 @@ import EmojiPicker from 'emoji-picker-react'
 import React, { useState } from 'react'
 import { AiFillFileImage, AiFillSmile } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
+
 import { openModalInfo } from '../../../../layout/sharedSlice/sharedSlice'
 const NewPost = () => {
   const [showEmoji, setShowEmoji] = useState(false)
@@ -42,9 +43,9 @@ const NewPost = () => {
           <Avatar name="Ayoub Sayah" />
           <Textarea
             ref={refText}
+            defaultValue={text}
             placeholder="What do u have in Mind?"
             w="full"
-            defaultValue={text}
             onChange={(e) => setText(e.target.value)}
           />
         </Flex>
@@ -53,11 +54,11 @@ const NewPost = () => {
       <Flex justifyContent="space-between">
         <Flex
           _hover={{ background: 'gray.200' }}
-          as={'label'}
           alignItems="center"
-          htmlFor="upload-image"
+          as={'label'}
           cursor="pointer"
           gap=".5rem"
+          htmlFor="upload-image"
           justifyContent="center"
           mx="auto"
           p="1rem"
@@ -91,16 +92,32 @@ const NewPost = () => {
               display={showEmoji ? 'block' : 'none'}
               pos="absolute"
               top="100%"
+              zIndex={15}
             >
               <EmojiPicker
+                categories={[
+                  {
+                    category: 'suggested',
+                    name: 'Recently Used',
+                  },
+                  { category: 'smileys_people', name: 'Faces...' },
+                  { category: 'flags', name: 'flags' },
+                ]}
+                lazyLoadEmojis={true}
+                previewConfig={{
+                  showPreview: false,
+                  defaultCaption: '',
+                }}
                 searchDisabled={true}
                 skinTonesDisabled={true}
-                lazyLoadEmojis={true}
                 onEmojiClick={(event, emojiObject) => {
                   console.log('emoji', event)
                   console.log(event.emoji, 'emojiiiiiiiii')
                   if (event.emoji === '🏳️‍🌈') {
                     dispatch(openModalInfo({ message: 'Orzon ya Feryeelll' }))
+                    return
+                  }
+                  if (event.emoji === '🫠') {
                     return
                   }
                   setText(`${text}${event.emoji}`)

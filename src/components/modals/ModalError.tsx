@@ -23,13 +23,19 @@ const ErrorModal: FunctionComponent = () => {
   return (
     <Modal
       isOpen={isModalShow}
-      onClose={() => dispatch(closeModalError)}
+      onClose={() => dispatch(closeModalError())}
       isCentered
     >
       <ModalOverlay />
       <ModalContent>
         <ModalBody maxW={'400px'}>
-          <Flex flexDir="column" justifyContent="center" p="4rem" gap="1rem">
+          <Flex
+            flexDir="column"
+            justifyContent="center"
+            p="4rem"
+            gap="1rem"
+            alignItems="center"
+          >
             <Icon
               as={AiOutlineStop}
               color="teal.500"

@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react'
 import React, { FC, useEffect, useState } from 'react'
 import { AiOutlineComment, AiOutlineSend } from 'react-icons/ai'
+import { useIfInView } from '../../../../utils/hooks/isInView'
 import { checkRtl } from '../../../../utils/utils'
 import {
   useLazyGetImageQuery,
@@ -36,8 +37,10 @@ const Post: FC<PostProps> = ({ post }) => {
   const refImage = React.useRef<any>()
   const [showComment, setShowComment] = React.useState(false)
   const [trigger, { isFetching, data: image, error }] = useLazyGetImageQuery()
+
   const [triggerProfile, { data: profileImage, error: errorProfile }] =
     useLazyGetImageProfileQuery()
+  // useIfInView({id:refDiv.current,trigger,url:post?.image})
 
   const handleTogleComment = () => setShowComment(!showComment)
   const handleToggle = () => setShow(!show)
