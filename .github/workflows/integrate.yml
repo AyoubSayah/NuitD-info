@@ -1,7 +1,30 @@
-name:deploy front
-on:
-  pull_request:
-   branches: [develop]
+name: Node.js CD
 
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [master]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build_pull_request:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ~/home/NuitD-info
+            git pull origin develop
+            git status
+            docker build . -t dockerized-react
+            docker run -p 80:80 -d dockerized-react

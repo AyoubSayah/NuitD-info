@@ -1,14 +1,9 @@
-import { Box, chakra, shouldForwardProp } from '@chakra-ui/react'
+import { Box, BoxProps, chakra, shouldForwardProp } from '@chakra-ui/react'
 import { motion, isValidMotionProp } from 'framer-motion'
 
 const BackgrounDiv = () => {
-  const ChakraBox = chakra(motion.div, {
-    /**
-     * Allow motion props and non-Chakra props to be forwarded.
-     */
-    shouldForwardProp: (prop) =>
-      isValidMotionProp(prop) || shouldForwardProp(prop),
-  })
+  const ChakraBox = motion<Omit<BoxProps, 'transition'>>(Box)
+
   return (
     <Box
       backgroundAttachment="fixed"
@@ -34,7 +29,6 @@ const BackgrounDiv = () => {
           y: [0, 150, -100, 0],
         }}
         rounded="full"
-        // @ts-expect-error no problem in operation, although type error appears.
         transition={{
           duration: 6,
           ease: 'easeInOut',
@@ -55,7 +49,6 @@ const BackgrounDiv = () => {
           x: [0, -50, -100, -300, 0],
           y: [0, 450, -50, 0],
         }}
-        // @ts-expect-error no problem in operation, although type error appears.
         transition={{
           duration: 9,
           ease: 'easeInOut',
@@ -77,7 +70,6 @@ const BackgrounDiv = () => {
           x: [0, -300, -200, -400, 0],
           y: [0, 250, -100, 0],
         }}
-        // @ts-expect-error no problem in operation, although type error appears.
         transition={{
           duration: 5,
           ease: 'easeInOut',
@@ -99,7 +91,6 @@ const BackgrounDiv = () => {
           x: [0, -300, -200, -400, 0],
           y: [500, 250, -100, 500],
         }}
-        // @ts-expect-error no problem in operation, although type error appears.
         transition={{
           duration: 5,
           ease: 'easeInOut',
@@ -122,7 +113,6 @@ const BackgrounDiv = () => {
           x: [100, -300, -200, -400, 100],
           y: [600, 250, -100, 600],
         }}
-        // @ts-expect-error no problem in operation, although type error appears.
         transition={{
           duration: 5,
           ease: 'easeInOut',

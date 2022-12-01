@@ -3,7 +3,9 @@ import {
   Card,
   CardBody,
   CardHeader,
+  chakra,
   Img,
+  shouldForwardProp,
   SimpleGrid,
   Text,
 } from '@chakra-ui/react'
@@ -11,15 +13,33 @@ import notifcationImage from '../../../assets/landing/notification.svg'
 import NewsImage from '../../../assets/landing/news.svg'
 import coverImage from '../../../assets/landing/cover.svg'
 import DesignImage from '../../../assets/landing/design.svg'
+import UseInView from '../../../utils/hooks/UseInView'
+import { isValidMotionProp, motion, useAnimation } from 'framer-motion'
+import { useEffect } from 'react'
 
 const Services = () => {
+  const { ref, controls } = UseInView()
+
+  const ChakraDiv = chakra(motion.div, {
+    /**
+     * Allow motion props and non-Chakra props to be forwarded.
+     */
+    shouldForwardProp: (prop) =>
+      isValidMotionProp(prop) || shouldForwardProp(prop),
+  })
   return (
-    <Box as="section" zIndex={15} position="relative">
+    <ChakraDiv
+      zIndex={15}
+      initial={{ y: 400, opacity: 0 }}
+      animate={controls}
+      position="relative"
+      ref={ref}
+    >
       <Text
         as="h2"
         fontWeight="extrabold"
         fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
-        mt="5rem"
+        mt="10rem"
         textAlign="center"
         textTransform="capitalize"
         maxW={{ base: '100%', md: '50rem' }}
@@ -134,7 +154,7 @@ const Services = () => {
           </CardBody>
         </Card>
       </SimpleGrid>
-    </Box>
+    </ChakraDiv>
   )
 }
 

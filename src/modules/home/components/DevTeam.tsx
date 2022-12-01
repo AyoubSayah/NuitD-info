@@ -1,4 +1,6 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+/* eslint-disable */
+
+import { Box, chakra, Flex, shouldForwardProp, Text } from '@chakra-ui/react'
 import React from 'react'
 import feryel from '../../../assets/team/feryel.jpg'
 import ayoub from '../../../assets/team/ayoub.png'
@@ -8,17 +10,32 @@ import elbou from '../../../assets/team/elbou.jpg'
 import houssem from '../../../assets/team/houssem.jpg'
 import haroon from '../../../assets/team/haroon.jpg'
 
-import AvatarProgress from '../../../components/avatar/avatar'
 import { shuffleArray } from '../../../utils/utils'
+import UseInView from '../../../utils/hooks/UseInView'
+import { motion, isValidMotionProp } from 'framer-motion'
+import AvatarProgress from '../../../components/avatar/Avatar'
 const DevTeam = () => {
   const devs = [feryel, ayoub, mahmoud, yassine, elbou, houssem, haroon]
+  const { ref, controls } = UseInView()
+
+  const ChakraDiv = chakra(motion.section, {
+    shouldForwardProp: (prop) =>
+      isValidMotionProp(prop) || shouldForwardProp(prop),
+  })
   return (
-    <Box as="section" zIndex={15} position="relative" mt="5rem" mb="18rem">
+    <ChakraDiv
+      initial={{ y: 400, opacity: 0 }}
+      ref={ref}
+      animate={controls}
+      zIndex={15}
+      position="relative"
+      mb="18rem"
+    >
       <Text
         as="h2"
         fontWeight="extrabold"
         fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
-        mt="12rem"
+        mt="19rem"
         textAlign="center"
         textTransform="capitalize"
         maxW={{ base: '100%', md: '50rem' }}
@@ -33,14 +50,14 @@ const DevTeam = () => {
         textAlign="center"
         textTransform="capitalize"
       >
-        we are a team of 6 developers
+        we are a team of 7 developers
       </Text>
       <Flex justifyContent="center" flexWrap="wrap" mt="6rem">
         {shuffleArray(devs).map((image: string, index) => (
           <AvatarProgress key={index} avatarUrl={image} size="12rem" />
         ))}
       </Flex>
-    </Box>
+    </ChakraDiv>
   )
 }
 
