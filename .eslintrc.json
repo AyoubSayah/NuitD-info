@@ -44,7 +44,10 @@
         "noSortAlphabetically": false,
         "reservedFirst": true
       }
-    ]
+    ],
+    "options": {
+      "emitWarning": true
+    }
   },
   "settings": {
     "react": {

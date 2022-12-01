@@ -7,29 +7,52 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
+import {
+  Box,
+  chakra,
+  Flex,
+  Icon,
+  shouldForwardProp,
+  Skeleton,
+  Text,
+} from '@chakra-ui/react'
+import { Navigation } from 'swiper'
+import { motion, isValidMotionProp } from 'framer-motion'
+
 import { useGetNewsQuery } from '../slices/landingAsyncSlice'
+import UseInView from '../../../utils/hooks/UseInView'
 
 import CarouselItem from './CarouselItem'
-import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
-import { Navigation } from 'swiper'
 
 const CarouselNews = () => {
   const { data: feeds, isFetching } = useGetNewsQuery({})
   const navigationPrevRef = React.useRef(null)
   const navigationNextRef = React.useRef(null)
   const listOfSkeletons = [1, 2, 3, 4]
+  const { ref, controls } = UseInView()
 
+  const ChakraDiv = chakra(motion.section, {
+    shouldForwardProp: (prop) =>
+      isValidMotionProp(prop) || shouldForwardProp(prop),
+  })
   return (
-    <Box as="section" zIndex={15} position="relative" my="8rem">
+    <ChakraDiv
+      animate={controls}
+      initial={{ y: 400, opacity: 0 }}
+      my="8rem"
+      position="relative"
+      ref={ref}
+      zIndex={15}
+    >
       <Text
         as="h2"
-        fontWeight="extrabold"
         fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
+        fontWeight="extrabold"
+        maxW={{ base: '100%', md: '50rem' }}
         mt="12rem"
+        mx="auto"
         textAlign="center"
         textTransform="capitalize"
-        maxW={{ base: '100%', md: '50rem' }}
-        mx="auto"
       >
         Latest News from arround the world
       </Text>
@@ -43,11 +66,14 @@ const CarouselNews = () => {
       </Text>
       <Box p="4rem">
         <Swiper
-          slidesPerView={4}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper: any) => console.log(swiper)}
           modules={[Navigation]}
+          navigation={{
+            prevEl: navigationPrevRef.current,
+            nextEl: navigationNextRef.current,
+          }}
+          slidesPerView={4}
           watchSlidesProgress={true}
+          onSlideChange={() => console.log('slide change')}
           breakpoints={{
             320: { slidesPerView: 1 },
             680: { slidesPerView: 2 },
@@ -55,10 +81,7 @@ const CarouselNews = () => {
             1200: { slidesPerView: 4 },
           }}
           //   sx={{ '.swiper-wrapper': { padding: '0 2rem;' } }}
-          navigation={{
-            prevEl: navigationPrevRef.current,
-            nextEl: navigationNextRef.current,
-          }}
+          onSwiper={(swiper: any) => console.log(swiper)}
         >
           {feeds &&
             feeds.length > 0 &&
@@ -81,10 +104,10 @@ const CarouselNews = () => {
               {listOfSkeletons.map((item) => (
                 <SwiperSlide>
                   <Skeleton
-                    startColor="primary.50"
-                    endColor="primary.100"
                     borderRadius="lg"
+                    endColor="primary.100"
                     mx="1rem"
+                    startColor="primary.50"
                   >
                     {' '}
                     <CarouselItem data={item} />
@@ -96,38 +119,38 @@ const CarouselNews = () => {
           <Box
             ref={navigationNextRef}
             color="primary.500"
-            transform="translateY(-50%)"
             cursor="pointer"
-            width="3rem"
-            zIndex={26}
+            height="3rem"
             pos="absolute"
             right="-.8rem"
             top="45%"
-            height="3rem"
+            transform="translateY(-50%)"
+            width="3rem"
+            zIndex={26}
           >
-            <Icon viewBox="0 0 256 512" fill="primary.500" w="full" h="full">
+            <Icon fill="primary.500" h="full" viewBox="0 0 256 512" w="full">
               <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" />
             </Icon>
           </Box>
           <Box
             ref={navigationPrevRef}
             color="primary.500"
-            pos="absolute"
+            cursor="pointer"
+            height="3rem"
             left="0rem"
+            pos="absolute"
             top="45%"
             transform="translateY(-50%)"
-            cursor="pointer"
             width="3rem"
             zIndex={26}
-            height="3rem"
           >
-            <Icon viewBox="0 0 256 512" fill="primary.500" w="full" h="full">
+            <Icon fill="primary.500" h="full" viewBox="0 0 256 512" w="full">
               <path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z" />
             </Icon>
           </Box>
         </Swiper>
       </Box>
-    </Box>
+    </ChakraDiv>
   )
 }
 

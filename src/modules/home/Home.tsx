@@ -1,8 +1,12 @@
+/* eslint-disable */
+
 import {
   Box,
   Button,
   chakra,
   Flex,
+  Image,
+  ImageProps,
   Img,
   shouldForwardProp,
   Text,
@@ -11,18 +15,20 @@ import { isValidMotionProp, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import coverPicture from '../../assets/landing/cover.svg'
 import bottomNavbarImage from '../../assets/landing/navbar.png'
+import AnimatedText from './components/AnimatedText'
 import CarouselNews from './components/CarouselNews'
 import DevTeam from './components/DevTeam'
 import Services from './components/Services'
 
 const Home = () => {
-  const ChakraImage = chakra(motion.img, {
-    /**
-     * Allow motion props and non-Chakra props to be forwarded.
-     */
-    shouldForwardProp: (prop) =>
-      isValidMotionProp(prop) || shouldForwardProp(prop),
-  })
+  // const ChakraImage = chakra(motion.img, {
+  //   /**
+  //    * Allow motion props and non-Chakra props to be forwarded.
+  //    */
+  //   shouldForwardProp: (prop) =>
+  //     isValidMotionProp(prop) || shouldForwardProp(prop),
+  // })
+  const ChakraImage = motion<Omit<ImageProps, 'transition'>>(Image)
   return (
     <>
       <Flex
@@ -42,16 +48,16 @@ const Home = () => {
           gap=".5rem"
           order={{ base: 2, md: 'unset' }}
         >
-          <Text
+          <AnimatedText
             as="h1"
             fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
             fontWeight="bold"
             color="primary.700"
             textAlign="left"
             maxW="30rem"
-          >
-            PROXELA
-          </Text>
+            text="PROXELA"
+          />
+
           <Text
             fontSize={{ base: 'xl', md: '2xl' }}
             fontWeight="bold"
@@ -73,7 +79,9 @@ const Home = () => {
             >
               Start Now
             </Button>
-            <Link to={'/contactus'}><Button size="lg">Contact Us</Button></Link>
+            <Link to={'/contactus'}>
+              <Button size="lg">Contact Us</Button>
+            </Link>
           </Flex>
         </Flex>
         <Box flexBasis="50%">
