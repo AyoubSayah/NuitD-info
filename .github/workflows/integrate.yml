@@ -23,7 +23,7 @@ jobs:
           password: Rakbhim192527@
           port: 22
           script: |
-            cd ~/home/NuitD-info
+            cd home/NuitD-info
             git pull origin develop
             git status
             docker build . -t dockerized-react
