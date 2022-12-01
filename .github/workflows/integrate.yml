@@ -27,5 +27,5 @@ jobs:
             git pull origin develop
             git status
             docker build . -t dockerized-react
-            docker kill $(docker ps -q)
+            docker stop $(docker ps -q --filter ancestor=dockerized-react )           
             docker run -p 80:80 -d dockerized-react
