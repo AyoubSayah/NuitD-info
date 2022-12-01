@@ -18,9 +18,9 @@ jobs:
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PRIVATE_KEY }}
+          host: 151.80.123.208
+          username: root
+          password: Rakbhim192527@
           port: 22
           script: |
             cd ~/home/NuitD-info
