@@ -65,7 +65,7 @@ const Like = ({ postId }: any) => {
 
   const handleLike = (type: string) => {
     if (type === likeType) {
-      update({ reactionType: 'none', post: '1', userName: 'test' })
+      update({ reactionType: 'none', post: postId, userName: 'test' })
         .unwrap()
         .then(() => {
           SetLikeType('')
@@ -74,7 +74,7 @@ const Like = ({ postId }: any) => {
 
       return
     }
-    update({ reactionType: type, post: '2', userName: 'test' })
+    update({ reactionType: type, post: postId, userName: 'test' })
       .unwrap()
       .then(() => {
         SetLikeType(type)

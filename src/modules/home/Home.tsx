@@ -75,13 +75,15 @@ const Home = () => {
             sexuelle de chaque personne est un espace intime
           </Text>
           <Flex gap=".5rem" mt="1rem">
-            <Button
-              color="white"
-              colorScheme="primary"
-              size={{ base: 'md', md: 'lg' }}
-            >
-              Start Now
-            </Button>
+            <Link to="/auth/register">
+              <Button
+                color="white"
+                colorScheme="primary"
+                size={{ base: 'md', md: 'lg' }}
+              >
+                Rejoindre Nous
+              </Button>
+            </Link>
             <Link to={'/contactus'}>
               <Button size="lg">Contact Us</Button>
             </Link>

@@ -1,5 +1,5 @@
 import { BoxProps, Flex, Text } from '@chakra-ui/react'
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 type LikesNumberProps = {
   likeType?: string
   listOfLikes?: any[]
@@ -9,6 +9,9 @@ const LikesNumber: FC<LikesNumberProps> = ({
   listOfLikes,
   ...props
 }) => {
+  useEffect(() => {
+    console.log(listOfLikes, 'listOfLike')
+  }, [listOfLikes])
   return (
     <Flex
       bg="blackAlpha.700"
@@ -28,8 +31,8 @@ const LikesNumber: FC<LikesNumberProps> = ({
     >
       <Text fontSize="sm">{likeType}</Text>
       {listOfLikes?.map((like) => (
-        <Text key={like.owner} fontSize="xs">
-          {like.owner}
+        <Text key={like._id} fontSize="xs">
+          {like.userName}
         </Text>
       ))}
     </Flex>

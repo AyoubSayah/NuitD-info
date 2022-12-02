@@ -50,7 +50,7 @@ const NewPost = () => {
         .unwrap()
         .then((data) => {
           addPost({
-            image: imageUrl + data,
+            image: imageUrl + data.fileName,
             content: text,
             userNAme: 'Ahmed hedi',
           })

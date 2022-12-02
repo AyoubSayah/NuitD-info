@@ -18,7 +18,7 @@ import { FunctionComponent, memo, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiOutlineUser, AiOutlineLogout, AiOutlineBell } from 'react-icons/ai'
 
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import Logo from '../../components/logo/Logo'
 import bottomNavbarImage from '../../assets/landing/navbar.png'
@@ -133,19 +133,21 @@ const Navbar: FunctionComponent<NavbarProps> = ({
         )}
         {token == null && (
           <Flex alignItems="center" gap="1rem" ml="auto">
-            <Button
-              _hover={{
-                background: 'primary.600',
-              }}
-              background="primary.500"
-              color="white"
-              rounded="full"
-              size="lg"
-              // py="1.3rem"
-              fontWeight="bold"
-            >
-              JOIN US
-            </Button>
+            <Link to="/auth/login">
+              <Button
+                _hover={{
+                  background: 'primary.600',
+                }}
+                background="primary.500"
+                color="white"
+                rounded="full"
+                size="lg"
+                // py="1.3rem"
+                fontWeight="bold"
+              >
+                Login
+              </Button>
+            </Link>
             {/* <Select
             bg="white"
             w="6.5rem"

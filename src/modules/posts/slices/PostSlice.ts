@@ -45,6 +45,11 @@ export const PostSlice = globalApi.injectEndpoints({
         body: data,
       }),
     }),
+    getLikes: build.query({
+      query: (data) => ({
+        url: 'reaction/' + data,
+      }),
+    }),
   }),
 })
 export const {
@@ -54,4 +59,5 @@ export const {
   useLikePostMutation,
   useLazyGetCommentsQuery,
   useAddCommentMutation,
+  useGetLikesQuery,
 } = PostSlice
