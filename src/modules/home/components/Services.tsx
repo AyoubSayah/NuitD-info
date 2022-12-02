@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import notifcationImage from '../../../assets/landing/notification.svg'
 import NewsImage from '../../../assets/landing/news.svg'
-import coverImage from '../../../assets/landing/cover.svg'
+import coverImage from '../../../assets/landing/family.svg'
 import DesignImage from '../../../assets/landing/design.svg'
 import UseInView from '../../../utils/hooks/UseInView'
 import { isValidMotionProp, motion, useAnimation } from 'framer-motion'
@@ -45,7 +45,8 @@ const Services = () => {
         maxW={{ base: '100%', md: '50rem' }}
         mx="auto"
       >
-        We Should Provide You with the best features{' '}
+        Nous vous souhaitons, à toutes et tous une bonne santé et une bonne vie
+        sexuelle
       </Text>
       <Text
         fontSize={{ base: 'lg', md: '2xl' }}
@@ -53,7 +54,7 @@ const Services = () => {
         mx="auto"
         textAlign="center"
       >
-        Join Us Now and get the best features that you can't find anywhere else
+        Rejoindre notre communité et aide a sensibler les gens
       </Text>
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
@@ -78,10 +79,11 @@ const Services = () => {
             textTransform="capitalize"
             maxW={{ base: '100%', md: '35rem' }}
           >
-            We will send you Notification Everywhere
+            Chaque personne est accueillie avec respect, bienveillance et sans
+            jugement.{' '}
           </CardHeader>
           <CardBody>
-            <Img src={notifcationImage} w="25rem" h="25rem" />
+            <Img src={notifcationImage} w="20rem" h="20rem" mx="auto" />
           </CardBody>
         </Card>
         <Card
@@ -101,10 +103,10 @@ const Services = () => {
             textTransform="capitalize"
             maxW={{ base: '100%', md: '35rem' }}
           >
-            News and Updates will be sent to you
+            Pour se protéger, se soigner, connaître ses droits,
           </CardHeader>
           <CardBody>
-            <Img src={NewsImage} w="25rem" h="25rem" />
+            <Img src={NewsImage} w="20rem" h="20rem" mx="auto" />
           </CardBody>
         </Card>
         <Card
@@ -124,10 +126,11 @@ const Services = () => {
             textTransform="capitalize"
             maxW={{ base: '100%', md: '35rem' }}
           >
-            A Beautiful Design that you will love
+            Selon les besoins de chacun.e, SIS Association oriente vers les
+            structures les plus adaptées.{' '}
           </CardHeader>
           <CardBody>
-            <Img src={coverImage} w="25rem" h="25rem" />
+            <Img src={coverImage} w="20rem" h="20rem" mx="auto" />
           </CardBody>
         </Card>
         <Card
@@ -147,10 +150,10 @@ const Services = () => {
             textTransform="capitalize"
             maxW={{ base: '100%', md: '35rem' }}
           >
-            A great Community support
+            Avec trois décennies d’expérience dans la relation d’aide à distance
           </CardHeader>
           <CardBody>
-            <Img src={DesignImage} w="25rem" h="25rem" />
+            <Img src={DesignImage} w="20rem" h="20rem" mx="auto" />
           </CardBody>
         </Card>
       </SimpleGrid>

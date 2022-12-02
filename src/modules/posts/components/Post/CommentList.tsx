@@ -1,5 +1,6 @@
 import { Avatar, Box, Collapse, Flex, Text } from '@chakra-ui/react'
-import React from 'react'
+import React,{useEffect} from 'react'
+import { useLazyGetCommentsQuery } from '../../slices/PostSlice'
 const ListComments = [
   {
     id: 1,
@@ -16,7 +17,7 @@ const ListComments = [
     name: 'Feryel Zoghlami',
     comment: 'Sayah',
   },
-  
+
   {
     id: 4,
     name: 'Yassine mrad',
@@ -31,7 +32,16 @@ const ListComments = [
 
 const CommentList = () => {
   const [show, setShow] = React.useState(false)
+  const [trigger, result] = useLazyGetCommentsQuery()
   const handleToggle = () => setShow(!show)
+  const useEffect(() => {
+    
+  
+    return () => {
+      
+    }
+  }, [])
+  
   return (
     <Flex flexDirection="column" mt="1rem">
       {ListComments.length > 0 && (

@@ -16,6 +16,6 @@ export const globalApi = createApi({
       return headers
     },
   }),
-  tagTypes: [],
+  tagTypes: ['NEWPOST'],
   endpoints: () => ({}),
 })

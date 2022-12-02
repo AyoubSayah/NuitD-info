@@ -24,6 +24,7 @@ import Logo from '../../components/logo/Logo'
 import bottomNavbarImage from '../../assets/landing/navbar.png'
 import { useSelector } from 'react-redux'
 import { selectToken } from '../../modules/auth/slices/authSlice'
+import LogoSIS from '../../components/logo/LogoSIS'
 type NavbarProps = {
   toggleSideBar?: () => void
   sideBarWidth?: number
@@ -81,7 +82,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
         w="100%"
       >
         <Flex alignItems="center">
-          <Logo h="4rem" w="4rem" />
+          <LogoSIS h="5rem" w="5rem" />
         </Flex>
         {token === null && (
           <Flex

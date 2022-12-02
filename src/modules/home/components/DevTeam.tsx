@@ -9,6 +9,7 @@ import yassine from '../../../assets/team/yassine.jpg'
 import elbou from '../../../assets/team/elbou.jpg'
 import houssem from '../../../assets/team/houssem.jpg'
 import haroon from '../../../assets/team/haroon.jpg'
+import fontdateur from '../../../assets/landing/fondateur.png'
 
 import { shuffleArray } from '../../../utils/utils'
 import UseInView from '../../../utils/hooks/UseInView'
@@ -41,7 +42,7 @@ const DevTeam = () => {
         maxW={{ base: '100%', md: '50rem' }}
         mx="auto"
       >
-        Our Dev Team
+        Le fondateur de l'Association
       </Text>
       <Text
         fontSize={{ base: 'lg', md: '2xl' }}
@@ -49,13 +50,14 @@ const DevTeam = () => {
         mx="auto"
         textAlign="center"
         textTransform="capitalize"
+        mt="1rem"
       >
-        we are a team of 7 developers
+        Convaincue par Pierre KNEIP (1944-1995), alors responsable bénévole de
+        la permanence téléphonique de AIDES Ile-de-France, l’AFLS a voulu, à
+        l’instar de ce qui se faisait déjà dans plusieurs pays d’Europe,{' '}
       </Text>
-      <Flex justifyContent="center" flexWrap="wrap" mt="6rem">
-        {shuffleArray(devs).map((image: string, index) => (
-          <AvatarProgress key={index} avatarUrl={image} size="12rem" />
-        ))}
+      <Flex justifyContent="center" flexWrap="wrap" mt="3rem">
+        <AvatarProgress avatarUrl={fontdateur} size="12rem" />
       </Flex>
     </ChakraDiv>
   )

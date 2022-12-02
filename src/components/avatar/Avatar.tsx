@@ -8,7 +8,7 @@ import {
 import { FC, useState } from 'react'
 
 const AvatarProgress: FC<any> = ({
-  color = '#FC3E42',
+  color = '#35BFC5',
   size = '67px',
   thickness = '7px',
   capIsRound = true,
@@ -34,7 +34,14 @@ const AvatarProgress: FC<any> = ({
       {...props}
     >
       <CircularProgressLabel p="12px">
-        <Avatar h="100%" name={avatarName} src={avatarUrl} w="100%" />
+        <Avatar
+          h="10rem"
+          objectFit="cover"
+          name={avatarName}
+          src={avatarUrl}
+          size="2xl"
+          w="100%"
+        />
       </CircularProgressLabel>
     </CircularProgress>
   )

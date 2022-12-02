@@ -10,6 +10,7 @@ import {
 import React, { useState } from 'react'
 import { IoMdThumbsUp, IoMdThumbsDown, IoIosHeart } from 'react-icons/io'
 import Pika from '../../../../components/pika/Pika'
+import { useLikePostMutation } from '../../slices/PostSlice'
 const goUp = keyframes`
 0%{
 transform:translateY(4rem);
@@ -51,10 +52,10 @@ transform:scale(.8);
     transform:scale(1);}
  `
 
-const Like = () => {
+const Like = ({ postId }: any) => {
   const [showReactions, SetShowReaction] = useState(false)
   const [likeType, SetLikeType] = useState('')
-
+  const [update, result] = useLikePostMutation()
   const animationUp = goUp + ' .3s ease-in-out '
   const animationBounce = bounce + ' 1s ease-in-out infinite  '
   const animationBounceOnce = bounce + ' 1s ease-in-out'
@@ -64,12 +65,21 @@ const Like = () => {
 
   const handleLike = (type: string) => {
     if (type === likeType) {
-      SetLikeType('')
-      SetShowReaction(false)
+      update({ reactionType: 'none', post: '1', userName: 'test' })
+        .unwrap()
+        .then(() => {
+          SetLikeType('')
+          SetShowReaction(false)
+        })
+
       return
     }
-    SetLikeType(type)
-    SetShowReaction(false)
+    update({ reactionType: type, post: '2', userName: 'test' })
+      .unwrap()
+      .then(() => {
+        SetLikeType(type)
+        SetShowReaction(false)
+      })
   }
   const getBackgroundColor = () => {
     if (likeType === 'like') {

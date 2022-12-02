@@ -23,6 +23,7 @@ import {
   useLazyGetImageQuery,
   useLazyGetImageProfileQuery,
 } from '../../../home/slices/landingAsyncSlice'
+import { useGetPostQuery } from '../../slices/PostSlice'
 import CommentList from './CommentList'
 import Like from './Like'
 import ListOfLikes from './ListOfLikes'
@@ -37,7 +38,6 @@ const Post: FC<PostProps> = ({ post }) => {
   const refImage = React.useRef<any>()
   const [showComment, setShowComment] = React.useState(false)
   const [trigger, { isFetching, data: image, error }] = useLazyGetImageQuery()
-
   const [triggerProfile, { data: profileImage, error: errorProfile }] =
     useLazyGetImageProfileQuery()
   // useIfInView({id:refDiv.current,trigger,url:post?.image})
@@ -135,7 +135,7 @@ const Post: FC<PostProps> = ({ post }) => {
       )}
       <ListOfLikes />
       <Flex mt="1rem">
-        <Like />
+        <Like postId={post?._id} />
         <Divider
           orientation="vertical"
           ml="auto"

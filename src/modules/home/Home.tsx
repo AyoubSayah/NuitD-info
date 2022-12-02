@@ -18,6 +18,7 @@ import bottomNavbarImage from '../../assets/landing/navbar.png'
 import AnimatedText from './components/AnimatedText'
 import CarouselNews from './components/CarouselNews'
 import DevTeam from './components/DevTeam'
+import FaqQuestions from './components/FaqQuestions'
 import Services from './components/Services'
 
 const Home = () => {
@@ -55,7 +56,8 @@ const Home = () => {
             color="primary.700"
             textAlign="left"
             maxW="30rem"
-            text="PROXELA"
+            letterSpacing={'.2rem'}
+            text="Sida  Info  Service"
           />
 
           <Text
@@ -64,12 +66,13 @@ const Home = () => {
             textAlign="left"
             maxW="30rem"
           >
-            Idk what to write here but I'm sure it will be something cool.
+            Sida Info Service a été créée en 1990 au plus fort de l’épidémie de
+            SIDA
           </Text>
           <Text maxW="30rem">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
-            quod iusto quasi est dolore reiciendis corrupti voluptatum
-            similique,
+            Depuis sa fondation, SIS Association s’est inscrite dans la
+            promotion de la santé sexuelle parce que convaincue que la vie
+            sexuelle de chaque personne est un espace intime
           </Text>
           <Flex gap=".5rem" mt="1rem">
             <Button
@@ -111,7 +114,7 @@ const Home = () => {
       <Services />
       <Img
         height="5rem"
-        mt="3rem"
+        mt="4rem"
         position="absolute"
         src={bottomNavbarImage}
         width="100%"
@@ -120,7 +123,16 @@ const Home = () => {
       <CarouselNews />
       <Img
         height="5rem"
-        mt="-4zzzzzzrem"
+        mt="3rem"
+        position="absolute"
+        src={bottomNavbarImage}
+        width="100%"
+        zIndex="-6"
+      />
+      <FaqQuestions />
+      <Img
+        height="5rem"
+        mt="3rem"
         position="absolute"
         src={bottomNavbarImage}
         width="100%"

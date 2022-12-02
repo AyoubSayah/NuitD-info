@@ -38,7 +38,7 @@ const ErrorModal: FunctionComponent = () => {
           >
             <Icon
               as={AiOutlineStop}
-              color="teal.500"
+              color="red.500"
               display="block"
               w="5rem"
               h="5rem"

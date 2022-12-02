@@ -23,9 +23,11 @@ import { useGetNewsQuery } from '../slices/landingAsyncSlice'
 import UseInView from '../../../utils/hooks/UseInView'
 
 import CarouselItem from './CarouselItem'
+import faqs from '../Mock/faq'
+import FaqItem from './FaqItem'
 
-const CarouselNews = () => {
-  const { data: feeds, isFetching } = useGetNewsQuery({})
+const FaqQuestions = () => {
+  const [myFaqs, setFaqs] = React.useState([...faqs])
   const navigationPrevRef = React.useRef(null)
   const navigationNextRef = React.useRef(null)
   const listOfSkeletons = [1, 2, 3, 4]
@@ -40,6 +42,7 @@ const CarouselNews = () => {
       animate={controls}
       initial={{ y: 400, opacity: 0 }}
       my="8rem"
+      ref={ref}
       position="relative"
       zIndex={15}
     >
@@ -48,23 +51,15 @@ const CarouselNews = () => {
         fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
         fontWeight="extrabold"
         maxW={{ base: '100%', md: '50rem' }}
-        mt="12rem"
-        ref={ref}
+        mt="20rem"
         mx="auto"
         textAlign="center"
         textTransform="capitalize"
       >
-        Latest News from arround the world
+        QUESTIONS FRÉQUENTES VIH/SIDA{' '}
       </Text>
-      <Text
-        fontSize="2xl"
-        maxW={{ base: '100%', md: '45rem' }}
-        mx="auto"
-        textAlign="center"
-      >
-        We will send you Notification Everywhere
-      </Text>
-      <Box p={{ base: '1rem', md: '4rem' }}>
+
+      <Box p="4rem">
         <Swiper
           modules={[Navigation]}
           navigation={{
@@ -83,39 +78,16 @@ const CarouselNews = () => {
           //   sx={{ '.swiper-wrapper': { padding: '0 2rem;' } }}
           onSwiper={(swiper: any) => console.log(swiper)}
         >
-          {feeds &&
-            feeds.length > 0 &&
-            feeds?.map(
-              (data: any) =>
-                data?.enclosures.length > 0 && (
-                  <SwiperSlide>
-                    {({ isVisible }) => (
-                      <CarouselItem
-                        key={data.title}
-                        data={data}
-                        isVisible={isVisible}
-                      />
-                    )}
-                  </SwiperSlide>
-                )
-            )}
-          {isFetching && (
-            <Flex justifyContent="space-between">
-              {listOfSkeletons.map((item) => (
-                <SwiperSlide>
-                  <Skeleton
-                    borderRadius="lg"
-                    endColor="primary.100"
-                    mx="1rem"
-                    startColor="primary.50"
-                  >
-                    {' '}
-                    <CarouselItem data={item} />
-                  </Skeleton>
-                </SwiperSlide>
-              ))}
-            </Flex>
-          )}
+          {myFaqs &&
+            myFaqs.length > 0 &&
+            myFaqs?.map((data: any) => (
+              <SwiperSlide>
+                {({ isVisible }) => (
+                  <FaqItem key={data.title} data={data} isVisible={isVisible} />
+                )}
+              </SwiperSlide>
+            ))}
+
           <Box
             ref={navigationNextRef}
             color="primary.500"
@@ -154,4 +126,4 @@ const CarouselNews = () => {
   )
 }
 
-export default CarouselNews
+export default FaqQuestions

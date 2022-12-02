@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react'
 import React from 'react'
 import Logo from '../../components/logo/Logo'
+import LogoSIS from '../../components/logo/LogoSIS'
 
 const Footer = () => {
   return (
@@ -25,10 +26,10 @@ const Footer = () => {
         Proudly made with Care by our team
       </Text>
       <Box w="10rem" h="10rem" bg="white" rounded="full">
-        <Logo h="100%" w="100%" />
+        <LogoSIS h="100%" w="100%" />
       </Box>
       <Text fontSize="2xl" fontWeight="extrabold" color="white">
-        PROXELA
+        Sida Info Service
       </Text>
     </Box>
   )

@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Button,
   chakra,
   Divider,
   Flex,
@@ -16,18 +17,71 @@ import React, { useState } from 'react'
 import { AiFillFileImage, AiFillSmile } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 
-import { openModalInfo } from '../../../../layout/sharedSlice/sharedSlice'
+import {
+  openModalInfo,
+  openModalSuccess,
+} from '../../../../layout/sharedSlice/sharedSlice'
+import {
+  useAddImageMutation,
+  useAddNewPostMutation,
+} from '../../slices/PostSlice'
 const NewPost = () => {
   const [showEmoji, setShowEmoji] = useState(false)
   const [text, setText] = useState('')
   const ref = React.useRef<any>()
+  const [upload] = useAddImageMutation()
+  const [addPost, result] = useAddNewPostMutation()
   const refText = React.useRef<any>()
+  const [image, setImage] = useState()
   const dispatch = useDispatch()
-
+  const imageUrl = 'http://151.80.123.208:3010/images/'
   useOutsideClick({
     ref,
     handler: () => setShowEmoji(false),
   })
+  const onSubmit = async () => {
+    if (image) {
+      const form = new FormData()
+      console.log(image)
+
+      form.append('file', image)
+
+      upload(form)
+        .unwrap()
+        .then((data) => {
+          addPost({
+            image: imageUrl + data,
+            content: text,
+            userNAme: 'Ahmed hedi',
+          })
+            .unwrap()
+            .then((data) => {
+              if (data.status === 'sent to Admin') {
+                dispatch(
+                  openModalSuccess({
+                    message: 'Your post has been sent to Admin for approval',
+                  })
+                )
+                setImage(null)
+                setText('')
+              }
+            })
+        })
+    } else if (text) {
+      addPost({ content: text, userNAme: '' })
+        .unwrap()
+        .then((data) => {
+          if (data.status === 'sent to Admin') {
+            dispatch(
+              openModalSuccess({
+                message: 'Your post has been sent to Admin for approval',
+              })
+            )
+            setText('')
+          }
+        })
+    }
+  }
 
   return (
     <Box
@@ -67,7 +121,14 @@ const NewPost = () => {
         >
           <Icon as={AiFillFileImage} color="red.500" h="1.5rem" w="1.5rem" />
           <Text fontWeight="bold">Upload Pictures</Text>
-          <Input display="none" id="upload-image" type="file" />
+          <Input
+            display="none"
+            id="upload-image"
+            type="file"
+            onChange={(e) => {
+              setImage(e.target.files[0])
+            }}
+          />
         </Flex>
 
         <Flex
@@ -113,10 +174,7 @@ const NewPost = () => {
                 onEmojiClick={(event, emojiObject) => {
                   console.log('emoji', event)
                   console.log(event.emoji, 'emojiiiiiiiii')
-                  if (event.emoji === '🏳️‍🌈') {
-                    dispatch(openModalInfo({ message: 'Orzon ya Feryeelll' }))
-                    return
-                  }
+
                   if (event.emoji === '🫠') {
                     return
                   }
@@ -129,6 +187,15 @@ const NewPost = () => {
           }
         </Flex>
       </Flex>
+      <Button
+        ml="auto"
+        display="block"
+        mt="2rem"
+        colorScheme="primary"
+        onClick={onSubmit}
+      >
+        Ajouter
+      </Button>
     </Box>
   )
 }

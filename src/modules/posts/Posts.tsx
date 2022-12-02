@@ -2,6 +2,7 @@ import { Box, Center, Flex, Input, Select, Text } from '@chakra-ui/react'
 import React from 'react'
 import NewPost from './components/newpost/NewPost'
 import Post from './components/Post/Post'
+import { useGetPostQuery } from './slices/PostSlice'
 const ListOfPosts = [
   {
     id: 2,
@@ -125,6 +126,8 @@ const ListOfPosts = [
   },
 ]
 const Posts = () => {
+  const { data, isLoading } = useGetPostQuery({})
+
   return (
     <Flex zIndex={15} position="relative" flexWrap="wrap">
       <Box
@@ -178,9 +181,9 @@ const Posts = () => {
         mx="auto"
       >
         <NewPost />
-        {ListOfPosts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+        {data?.length > 0
+          ? data.map((post) => <Post key={post.id} post={post} />)
+          : ListOfPosts.map((post) => <Post key={post.id} post={post} />)}
       </Center>
     </Flex>
   )
