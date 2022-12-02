@@ -22,6 +22,7 @@ import {
 import { motion, useAnimation } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import Smile from './components/Smile'
+import { useNavigate } from "react-router-dom";
 const variantButton = {
   left: {
     x: -100,
@@ -44,6 +45,7 @@ const variantButton = {
   },
 }
 const ContactUs = () => {
+  const navigate = useNavigate()
   const [index, setIndex] = useState(-1)
   const formikRef: any = useRef()
   const [isHover, setIsHover] = useState(false)
@@ -138,10 +140,10 @@ const ContactUs = () => {
             message: '',
           }}
           onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2))
             dispatch(
               openModalSuccess({ message: 'Votre ' })
             )
+            navigate('/')
           }}
         >
           {({ handleSubmit, errors, touched, isValid, dirty }) => (
