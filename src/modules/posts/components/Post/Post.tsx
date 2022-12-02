@@ -27,7 +27,6 @@ import { useGetPostQuery } from '../../slices/PostSlice'
 import CommentList from './CommentList'
 import Like from './Like'
 import ListOfLikes from './ListOfLikes'
-import dayjs from 'dayjs'
 interface PostProps {
   post: any
 }
@@ -70,9 +69,7 @@ const Post: FC<PostProps> = ({ post }) => {
       setContentHeight(true)
     }
   }, [])
-  const formatDate = (date: string) => {
-    return dayjs(date).format('DD/MMMM/YYYY HH:MM') // '25/01/2019'
-  }
+
   return (
     <Box
       boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"
@@ -95,7 +92,7 @@ const Post: FC<PostProps> = ({ post }) => {
             {post.userName}
           </Text>
           <Text fontSize="sm" my="0">
-            {formatDate(post?.createdAt)}
+            2 December 2022
           </Text>
         </Flex>
       </Flex>
