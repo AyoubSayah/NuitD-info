@@ -22,7 +22,7 @@ import {
 import { motion, useAnimation } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import Smile from './components/Smile'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 const variantButton = {
   left: {
     x: -100,
@@ -140,9 +140,7 @@ const ContactUs = () => {
             message: '',
           }}
           onSubmit={(values) => {
-            dispatch(
-              openModalSuccess({ message: 'Votre ' })
-            )
+            dispatch(openModalSuccess({ message: 'Votre ' }))
             navigate('/')
           }}
         >
@@ -168,7 +166,9 @@ const ContactUs = () => {
                         return error
                       }}
                     />
-                    <Box height="2rem"><FormErrorMessage>{errors.firstName}</FormErrorMessage></Box>
+                    <Box height="2rem">
+                      <FormErrorMessage>{errors.firstName}</FormErrorMessage>
+                    </Box>
                   </FormControl>
                   <FormControl
                     isInvalid={!!errors.lastName && touched.lastName}
@@ -188,8 +188,9 @@ const ContactUs = () => {
                         return error
                       }}
                     />
-                    <Box height="2rem"><FormErrorMessage>{errors.lastName}</FormErrorMessage></Box>
-                    
+                    <Box height="2rem">
+                      <FormErrorMessage>{errors.lastName}</FormErrorMessage>
+                    </Box>
                   </FormControl>
                 </HStack>
 
@@ -249,7 +250,8 @@ const ContactUs = () => {
                             message: (
                               <Flex flexDir="column">
                                 <Text>
-                                Pensez-vous que vous êtes intelligent ? Bien sûr, j’ai mis plus de validations
+                                  Pensez-vous que je suis stupid ? Bien sûr,
+                                  j’ai mis plus de validations
                                 </Text>
                                 <Image src="https://i.kym-cdn.com/entries/icons/mobile/000/030/710/dd0.jpg" />
                               </Flex>
@@ -267,7 +269,9 @@ const ContactUs = () => {
                     {index === 1 &&
                       (!isValid || !dirty) &&
                       'Essaie de me rattraper'}
-                    {index === 3 && (!isValid || !dirty) && 'Tu es vraiment lent'}
+                    {index === 3 &&
+                      (!isValid || !dirty) &&
+                      'Tu es vraiment lent'}
                   </Button>
                 </Flex>
               </VStack>

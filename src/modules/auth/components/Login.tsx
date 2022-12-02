@@ -13,6 +13,7 @@ import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   const initialValues = { email: '', password: '' }
@@ -95,17 +96,19 @@ const Login = () => {
                   {errors.password}
                 </Box>
               ) : null}
-              <Button
-                mt="2rem"
-                type="submit"
-                colorScheme="primary"
-                display="block"
-                fontSize="17"
-                mx="auto"
-                width="8rem"
-              >
-                Connexion
-              </Button>
+              <Link to="/private/home">
+                <Button
+                  mt="2rem"
+                  type="submit"
+                  colorScheme="primary"
+                  display="block"
+                  fontSize="17"
+                  mx="auto"
+                  width="8rem"
+                >
+                  Connexion
+                </Button>
+              </Link>
             </Form>
           )}
         </Formik>
