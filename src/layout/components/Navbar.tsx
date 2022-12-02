@@ -103,7 +103,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
                   fontSize="lg"
                   fontWeight="bold"
                 >
-                  Home
+                  Accueil
                 </Text>
               )}
             </NavLink>
@@ -118,7 +118,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
                 </Text>
               )}
             </NavLink>
-            <NavLink to={'/services'}>
+         {/*    <NavLink to={'/services'}>
               {({ isActive }) => (
                 <Text
                   color={isActive ? 'primary.500' : 'black'}
@@ -128,7 +128,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
                   Services
                 </Text>
               )}
-            </NavLink>
+            </NavLink> */}
           </Flex>
         )}
         {token == null && (
@@ -144,7 +144,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
               // py="1.3rem"
               fontWeight="bold"
             >
-              JOIN US
+              Rejoignez-nous
             </Button>
             {/* <Select
             bg="white"
