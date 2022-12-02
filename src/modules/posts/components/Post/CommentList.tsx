@@ -1,5 +1,5 @@
 import { Avatar, Box, Collapse, Flex, Text } from '@chakra-ui/react'
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useLazyGetCommentsQuery } from '../../slices/PostSlice'
 const ListComments = [
   {
@@ -34,14 +34,8 @@ const CommentList = () => {
   const [show, setShow] = React.useState(false)
   const [trigger, result] = useLazyGetCommentsQuery()
   const handleToggle = () => setShow(!show)
-  const useEffect(() => {
-    
-  
-    return () => {
-      
-    }
-  }, [])
-  
+  useEffect(() => {}, [])
+
   return (
     <Flex flexDirection="column" mt="1rem">
       {ListComments.length > 0 && (
