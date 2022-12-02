@@ -12,8 +12,10 @@ import {
 } from '@chakra-ui/react'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
+    const navigate = useNavigate();
   const initialValues = {
     username: '',
     firstName: '',
@@ -125,7 +127,7 @@ const Signup = () => {
           }}
           validationSchema={SignInSchema}
           onSubmit={(values) => {
-            console.log(values)
+            navigate('/auth/login')
           }}
         >
           {({ errors, touched }) => (
@@ -138,7 +140,6 @@ const Signup = () => {
                     id="lastName"
                     name="lastName"
                     type="text"
-                    validate={validateLastName}
                   />
                   <Box height="1rem">
                     {errors.lastName && touched.lastName ? (
@@ -156,7 +157,6 @@ const Signup = () => {
                     id="firstName"
                     name="firstName"
                     type="text"
-                    validate={validateFirstName}
                   />
                   <Box mb="2rem" height="1rem">
                     {errors.firstName && touched.firstName ? (
@@ -214,7 +214,7 @@ const Signup = () => {
                 as={Input}
                 id="confirmPassword"
                 name="confirmPassword"
-                type="confirmPassword"
+                type="password"
               />
               {errors.confirmPassword && touched.confirmPassword ? (
                 <Box fontSize="12" color="red">

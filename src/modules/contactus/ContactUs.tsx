@@ -22,6 +22,7 @@ import {
 import { motion, useAnimation } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import Smile from './components/Smile'
+import { useNavigate } from "react-router-dom";
 const variantButton = {
   left: {
     x: -100,
@@ -44,6 +45,7 @@ const variantButton = {
   },
 }
 const ContactUs = () => {
+  const navigate = useNavigate()
   const [index, setIndex] = useState(-1)
   const formikRef: any = useRef()
   const [isHover, setIsHover] = useState(false)
@@ -93,6 +95,21 @@ const ContactUs = () => {
       setIndex(index + 1)
     }
   }
+
+  function validateEmail(value: string) {
+    let error
+    if (!value) {
+      error = 'Saisir votre adresse email'
+    } else if (
+      !/^[a-zA-Z]+[a-zA-Z0-9]+[_.{1}]?[a-zA-Z0-9]+@[a-zA-Z0-9]+[-.{1}]?[a-zA-Z0-9]+[.][a-zA-Z.]{2,}$/i.test(
+        value
+      )
+    ) {
+      error = 'Address email invalide'
+    }
+    return error
+  }
+
   return (
     <Flex align="center" justify="center">
       <Box
@@ -112,7 +129,7 @@ const ContactUs = () => {
           fontWeight="extrabold"
           textAlign="center"
         >
-          Let's keep in touch
+          Restons en contact
         </Text>
         <Formik
           innerRef={formikRef}
@@ -123,20 +140,20 @@ const ContactUs = () => {
             message: '',
           }}
           onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2))
             dispatch(
-              openModalSuccess({ message: 'Sahhit bara zamer ya sayah' })
+              openModalSuccess({ message: 'Votre ' })
             )
+            navigate('/')
           }}
         >
           {({ handleSubmit, errors, touched, isValid, dirty }) => (
             <form onSubmit={handleSubmit}>
               <VStack spacing={4} align="flex-start">
-                <HStack spacing="24px">
+                <HStack>
                   <FormControl
                     isInvalid={!!errors.firstName && touched.firstName}
                   >
-                    <FormLabel htmlFor="firstName"> First Name</FormLabel>
+                    <FormLabel htmlFor="firstName"> Nom </FormLabel>
                     <Field
                       as={Input}
                       id="firstName"
@@ -146,17 +163,17 @@ const ContactUs = () => {
                       validate={(value: string) => {
                         let error
                         if (value === '') {
-                          error = 'First Name is required'
+                          error = 'Saisir votre nom'
                         }
                         return error
                       }}
                     />
-                    <FormErrorMessage>{errors.firstName}</FormErrorMessage>
+                    <Box height="2rem"><FormErrorMessage>{errors.firstName}</FormErrorMessage></Box>
                   </FormControl>
                   <FormControl
                     isInvalid={!!errors.lastName && touched.lastName}
                   >
-                    <FormLabel htmlFor="lastName"> Last Name</FormLabel>
+                    <FormLabel htmlFor="lastName">Prénom</FormLabel>
                     <Field
                       as={Input}
                       id="lastName"
@@ -166,35 +183,30 @@ const ContactUs = () => {
                       validate={(value: string) => {
                         let error
                         if (value === '') {
-                          error = 'Last Name is required'
+                          error = 'Saisir votre prénom'
                         }
                         return error
                       }}
                     />
-                    <FormErrorMessage>{errors.lastName}</FormErrorMessage>
+                    <Box height="2rem"><FormErrorMessage>{errors.lastName}</FormErrorMessage></Box>
+                    
                   </FormControl>
                 </HStack>
 
                 <FormControl isInvalid={!!errors.email && touched.email}>
-                  <FormLabel htmlFor="email">Email Address</FormLabel>
+                  <FormLabel htmlFor="email">Adresse email</FormLabel>
                   <Field
                     as={Input}
                     id="email"
                     name="email"
                     type="email"
                     variant="filled"
-                    validate={(value: string) => {
-                      let error
-                      if (value === '') {
-                        error = 'Email is required'
-                      }
-                      return error
-                    }}
+                    validate={validateEmail}
                   />
                   <FormErrorMessage>{errors.email}</FormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={!!errors.message && touched.message}>
-                  <FormLabel htmlFor="message">Your message</FormLabel>
+                  <FormLabel htmlFor="message">Votre message</FormLabel>
                   <Field
                     as={Textarea}
                     id="message"
@@ -204,7 +216,7 @@ const ContactUs = () => {
                     validate={(value: string) => {
                       let error
                       if (value === '') {
-                        error = 'Message is required'
+                        error = 'Message est obligatoire'
                       }
                       return error
                     }}
@@ -237,8 +249,7 @@ const ContactUs = () => {
                             message: (
                               <Flex flexDir="column">
                                 <Text>
-                                  Do you think im stupid ? of course i put more
-                                  validations
+                                Pensez-vous que vous êtes intelligent ? Bien sûr, j’ai mis plus de validations
                                 </Text>
                                 <Image src="https://i.kym-cdn.com/entries/icons/mobile/000/030/710/dd0.jpg" />
                               </Flex>
@@ -249,14 +260,14 @@ const ContactUs = () => {
                     }}
                   >
                     {isValid && dirty && 'Send'}
-                    {index === -1 && !dirty && 'Remplir le formulaire Now'}
+                    {index === -1 && !dirty && 'Envoyer'}
                     {(index === 2 || index === 0) && (!isValid || !dirty) && (
                       <Smile />
                     )}
                     {index === 1 &&
                       (!isValid || !dirty) &&
-                      'Catch me if you can!'}
-                    {index === 3 && (!isValid || !dirty) && 'you re too weak'}
+                      'Essaie de me rattraper'}
+                    {index === 3 && (!isValid || !dirty) && 'Tu es vraiment lent'}
                   </Button>
                 </Flex>
               </VStack>
