@@ -12,16 +12,19 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { isValidMotionProp, motion } from 'framer-motion'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import coverPicture from '../../assets/landing/cover.svg'
 import bottomNavbarImage from '../../assets/landing/navbar.png'
 import AnimatedText from './components/AnimatedText'
+import Canvas from './components/Canvas'
 import CarouselNews from './components/CarouselNews'
 import DevTeam from './components/DevTeam'
 import FaqQuestions from './components/FaqQuestions'
 import Services from './components/Services'
 
 const Home = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
   // const ChakraImage = chakra(motion.img, {
   //   /**
   //    * Allow motion props and non-Chakra props to be forwarded.
@@ -31,7 +34,8 @@ const Home = () => {
   // })
   const ChakraImage = motion<Omit<ImageProps, 'transition'>>(Image)
   return (
-    <>
+    <Box ref={containerRef}>
+      <Canvas ElementRef={containerRef} />
       <Flex
         h="calc(100vh - 7rem)"
         w="100%"
@@ -141,7 +145,7 @@ const Home = () => {
         zIndex="-6"
       />
       <DevTeam />
-    </>
+    </Box>
   )
 }
 

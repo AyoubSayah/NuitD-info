@@ -21,7 +21,7 @@ const BackgrounDiv = () => {
         display="flex"
         height="100px"
         justifyContent="center"
-        zIndex="5"
+        zIndex="10"
         padding="2"
         width="100px"
         animate={{
