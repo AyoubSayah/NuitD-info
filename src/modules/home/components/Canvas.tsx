@@ -1,5 +1,7 @@
 import { chakra, ImageProps, list } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
+import { colors as themeColors } from '../../../theme/colors'
+
 interface Particle {
   x: number
   y: number
@@ -12,8 +14,6 @@ interface Particle {
 const Canvas = ({ ElementRef }: any) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>()
-  const ref = []
-  const CanvasElement = chakra('canvas')
   useEffect(() => {
     intitiateCtx()
     return () => {}
@@ -32,7 +32,7 @@ const Canvas = ({ ElementRef }: any) => {
     let mouseClick
     const listOfParticles = []
     const mouseEvent = (e) => {
-      const colors = ['#35BFC5', '#31afb5', '#26888d', '#c3edef']
+      const colors = [...Object.values(themeColors['primary'])]
       for (let index = 0; index < 2; index++) {
         const newParticle = {
           x: e.x,

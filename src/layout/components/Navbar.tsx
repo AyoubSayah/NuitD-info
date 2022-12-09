@@ -67,7 +67,6 @@ const Navbar: FunctionComponent<NavbarProps> = ({
       left={0}
       w="100%"
       h="6rem"
-      px="1rem"
       animation={isSticky ? `${animationKeyframes} 0.5s ease-in-out` : ''}
       py="1rem"
       zIndex="80"
@@ -79,6 +78,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({
         justifyContent={'space-between'}
         right="0"
         top="0"
+        px="1rem"
         w="100%"
       >
         <Flex alignItems="center">

@@ -1,5 +1,6 @@
 import { Box, BoxProps, chakra, shouldForwardProp } from '@chakra-ui/react'
 import { motion, isValidMotionProp } from 'framer-motion'
+import { memo } from 'react'
 
 const BackgrounDiv = () => {
   const ChakraBox = motion<Omit<BoxProps, 'transition'>>(Box)
@@ -124,4 +125,4 @@ const BackgrounDiv = () => {
   )
 }
 
-export default BackgrounDiv
+export default memo(BackgrounDiv)
