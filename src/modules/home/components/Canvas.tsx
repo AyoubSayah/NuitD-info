@@ -29,6 +29,7 @@ const Canvas = ({ ElementRef }: any) => {
   }
   useEffect(() => {
     let mouseListener
+    let mouseClick
     const listOfParticles = []
     const mouseEvent = (e) => {
       const colors = ['#35BFC5', '#31afb5', '#26888d', '#c3edef']
@@ -49,6 +50,7 @@ const Canvas = ({ ElementRef }: any) => {
         'mousemove',
         mouseEvent
       )
+      mouseClick = ElementRef.current.addEventListener('click', mouseEvent)
     }
 
     if (ctx) {
@@ -58,6 +60,7 @@ const Canvas = ({ ElementRef }: any) => {
     return () => {
       if (mouseListener)
         mouseListener?.removeEventListener('mousemove', mouseEvent)
+      if (mouseClick) mouseClick?.removeEventListener('click', mouseEvent)
     }
   }, [ElementRef, ctx])
 
@@ -69,7 +72,6 @@ const Canvas = ({ ElementRef }: any) => {
   }
   const draw = (prticle: Particle) => {
     console.log(prticle, 'list')
-
     ctx.fillStyle = prticle.color
     ctx.beginPath()
     ctx.arc(prticle.x, prticle.y, prticle.radius, 0, Math.PI * 2)
@@ -80,8 +82,9 @@ const Canvas = ({ ElementRef }: any) => {
     canvasRef.current.height = window.innerHeight
   })
   const animate = (listOfParticles: Particle[]) => {
-    ctx.fillStyle = 'rgba(255,255,255,0.2)'
-    ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+    // ctx.fillStyle = 'rgba(255,255,255,0.4)'
+    // ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height)
     for (let i = 0; i < listOfParticles.length; i++) {
       console.log(listOfParticles[i], 'list')
 
@@ -89,6 +92,20 @@ const Canvas = ({ ElementRef }: any) => {
       console.log(listOfParticles[i], 'list2')
 
       draw(listOfParticles[i])
+
+      for (let j = i; j < listOfParticles.length; j++) {
+        const dx = listOfParticles[i].x - listOfParticles[j].x
+        const dy = listOfParticles[i].y - listOfParticles[j].y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        if (distance < 100) {
+          ctx.beginPath()
+          ctx.strokeStyle = listOfParticles[i].color
+          ctx.lineWidth = 0.2
+          ctx.moveTo(listOfParticles[i].x, listOfParticles[i].y)
+          ctx.lineTo(listOfParticles[j].x, listOfParticles[j].y)
+          ctx.stroke()
+        }
+      }
       if (listOfParticles[i].radius < 0.2) {
         listOfParticles.splice(i, 1)
         i--
@@ -105,10 +122,9 @@ const Canvas = ({ ElementRef }: any) => {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100%',
-        zIndex: 2,
-        height: '100%',
         background: 'transparent',
+        pointerEvents: 'none',
+        zIndex: 99,
       }}
       ref={canvasRef}
     />
